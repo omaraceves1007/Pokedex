@@ -1,0 +1,67 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+</mat-form-field>
+
+<div class='mat-elevation-z8 '>
+    <table mat-table matSort [dataSource]="pokedexFilter" class='section'>
+
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation();" (change)="checkboxLabel(row, $event);" [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Imagen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+            <td mat-cell *matCellDef="let element">
+                <img [src]='element.image'>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Altura">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Altura </th>
+            <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Peso">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Peso </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Tipo(s)">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo(s) </th>
+            <td mat-cell *matCellDef="let element"> {{element.types.join(', ') | titlecase}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsNames"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsNames;" (click)="checkboxLabel(row, $event);"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons></mat-paginator>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+<app-modal [selecction]='selected'></app-modal>
