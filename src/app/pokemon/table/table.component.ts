@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalComponent } from '../modal/modal.component';
 import { PokemonService } from '../../providers/pokemon.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialog } from '@angular/material/dialog';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -21,7 +23,7 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public _ps: PokemonService) { }
+  constructor(public _ps: PokemonService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this._ps.getPokedex().subscribe((resp: any) => {
@@ -67,6 +69,9 @@ export class TableComponent implements OnInit {
     if( this.selection.selected ){
       if(this.selection.selected.length === 10 ){
         this.selected = this.selection.selected;
+        this.dialog.open(ModalComponent, {
+          data: this.selected
+        });
       }
     }
   }
