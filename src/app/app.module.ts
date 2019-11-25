@@ -16,6 +16,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { ResultsComponent } from './pokemon/results/results.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { APP_ROUTES } from './app.routes';
+import { HomeComponent } from './pokemon/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     ContainerComponent,
     TableComponent,
     ModalComponent,
+    ResultsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule
+    ScrollingModule,
+    HttpClientModule,
+    APP_ROUTES
   ],
   providers: [],
   bootstrap: [AppComponent],

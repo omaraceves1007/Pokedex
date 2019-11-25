@@ -1,12 +1,12 @@
 <h1 mat-dialog-title> <i class="material-icons">list</i> Pokémon Seleccionado </h1>
 <div mat-dialog-content>
     <ul class="collection">
-        <li *ngFor="let item of data" class="collection-item">
-            <i class="material-icons pulse">done</i> {{item.name | titlecase}}
+        <li *ngFor="let item of data" class="collection-item center-align">
+            <img [src]="item.image"> <br> {{item.id}}.- {{item.name | titlecase}}
         </li>
     </ul>
 </div>
 <mat-dialog-actions align="end">
     <!-- <button mat-button mat-dialog-close>Cancel</button> -->
-    <button mat-button [mat-dialog-close]="true" class="blue-grey lighten-5">Ok</button>
+    <button mat-button [mat-dialog-close]="true" class="blue-grey lighten-5" (click)='result()'>Ok</button>
 </mat-dialog-actions>
