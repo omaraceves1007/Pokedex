@@ -1,0 +1,32 @@
+<section>
+    <div class='container section'>
+        <h3 class='center-align'> Pokémon Seleccionados </h3>
+        <cdk-virtual-scroll-viewport itemSize="10" style="height: 400px; width: 100%;" class="z-depth-4">
+            <table class='striped centered'>
+                <thead class="teal lighten-3">
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Nombre</th>
+                        <th>tipo(s)</th>
+                        <th>Descripción</th>
+                        <th>Altura</th>
+                        <th>Peso</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *cdkVirtualFor='let item of data'>
+                        <td>{{item.id}}</td>
+                        <td><img [src]='item.image'></td>
+                        <td>{{item.name | titlecase}}</td>
+                        <td>{{item.types | titlecase}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.height}}</td>
+                        <td>{{item.weight}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </cdk-virtual-scroll-viewport>
+    </div>
+</section>
