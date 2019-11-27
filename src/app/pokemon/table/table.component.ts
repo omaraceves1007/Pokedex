@@ -29,7 +29,8 @@ export class TableComponent implements OnInit {
     {value: 4, viewValue: 'Sinnoh'},
     {value: 5, viewValue: 'Unova'},
     {value: 6, viewValue: 'Kalos'},
-    {value: 7, viewValue: 'Alola'}
+    {value: 7, viewValue: 'Alola'},
+    {value: 8, viewValue: 'Nacional'}
   ];
   region;
   regionName: String;
@@ -134,8 +135,33 @@ export class TableComponent implements OnInit {
   }
 
   getRegion(event){
+    if (event.value === 8 ) {
+      this.getNational();
+    } else {
+      this.isLoadingResults = true;
+      this.getDex(event);
+    }
+  }
+
+  getNational(){
+    let petitions = [], national = [];
+    this.regionName = 'Nacional';
     this.isLoadingResults = true;
-    this.getDex(event);
+
+    for(let reg of this.regions) {
+      if( reg.value !== 8 ) {
+        petitions.push(this._ps.getRegion(reg.value))
+      }
+    }
+
+    forkJoin(petitions).subscribe((resp: []) => {
+      resp.forEach((dex: any) => {
+        dex.pokemon_species.forEach((pok: any) => {
+          national.push(pok);
+        });
+      });
+      this.getDataforPok(national);
+    });
   }
 
 }
