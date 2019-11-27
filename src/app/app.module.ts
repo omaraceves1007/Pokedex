@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { APP_ROUTES } from './app.routes';
 
 @NgModule({
@@ -45,6 +46,7 @@ import { APP_ROUTES } from './app.routes';
     MatIconModule,
     MatButtonModule,
     ScrollingModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     APP_ROUTES
   ],
